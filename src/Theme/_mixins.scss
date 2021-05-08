@@ -1,0 +1,33 @@
+@mixin tiny-device {
+  @media (max-width: $tiny-device-width) {
+    @content;
+  }
+}
+
+@mixin small-device {
+  @media (max-width: $small-device-width) {
+    @content;
+  }
+}
+
+@mixin regular-device {
+  @media (max-width: $regular-device-width) {
+    @content;
+  }
+}
+
+@mixin big-device {
+  @media (max-width: $big-device-width) {
+    @content;
+  }
+}
+
+@mixin large-device {
+  @media (min-width: $large-device-width) {
+    @content;
+  }
+}
+
+@mixin card-shadow {
+  box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.05);
+}

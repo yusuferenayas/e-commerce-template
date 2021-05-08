@@ -1,0 +1,10 @@
+@import "variables";
+
+:export {
+  primaryColor: $primary-color;
+  secondaryColor: $secondary-color;
+  titleColor: $title-color;
+
+  fontRegular: $font-regular;
+  fontLarge: $font-large;
+}
