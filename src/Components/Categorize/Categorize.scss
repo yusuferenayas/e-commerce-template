@@ -1,6 +1,8 @@
 @import "index.scss";
 
 #categorize {
+  margin-bottom: 36px;
+
   .categorizeItem {
     padding: 6px 16px;
     border-radius: 2px;
@@ -8,6 +10,8 @@
     background-color: $secondary-color;
     margin-right: 8px;
     cursor: pointer;
+    font-size: $font-small;
+    font-weight: 600;
 
     &--isActive {
       color: white;

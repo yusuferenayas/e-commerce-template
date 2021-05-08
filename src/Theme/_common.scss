@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: "Open Sans";
+  background: #E5E5E5;
 
   *:focus,
   *:active {
@@ -23,5 +24,11 @@ body {
     font-size: $font-large;
     color: $title-color;
     font-weight: 400;
+  }
+
+  p {
+    font-size: $font-regular;
+    color: $gray-scale-color;
+    margin-top: 8px;
   }
 }

@@ -1,0 +1,12 @@
+@import "index.scss";
+
+#content {
+  width: 50%;
+
+  .content {
+    &__products {
+      background-color: white;
+      padding: 7px 20px 50px 20px;
+    }
+  }
+}

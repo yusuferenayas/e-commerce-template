@@ -1,11 +1,14 @@
-import {Categorize} from "Components";
-import React from "react";
+import {Categorize, ProductCard} from "Components";
+import "./Content.scss";
 
 const Content = () => {
   return (
-    <div>
+    <div id="content">
       <h4>Products</h4>
       <Categorize />
+      <div className="content__products">
+        <ProductCard />
+      </div>
     </div>
   );
 };

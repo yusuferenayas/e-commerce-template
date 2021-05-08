@@ -4,6 +4,8 @@ type ThemeVariablesType = {
   primaryColor: string;
   secondaryColor: string;
   titleColor: string;
+  productBorderColor: string;
+  grayScaleColor: string;
 
   fontRegular: string;
   fontLarge: string;
@@ -15,6 +17,8 @@ export const colors = {
   primary: variables.primaryColor,
   secondary: variables.secondaryColor,
   title: variables.titleColor,
+  productBorder: variables.productBorderColor,
+  grayScale: variables.grayScaleColor,
 };
 
 export const fontSize = {

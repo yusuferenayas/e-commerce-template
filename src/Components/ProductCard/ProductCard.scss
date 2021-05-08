@@ -1,0 +1,17 @@
+@import "index.scss";
+
+#productCard {
+  width: 20%;
+
+  img {
+    margin-top: 16px;
+    margin-bottom: 8px;
+    padding: 16px;
+    border: 1px $product-border-color solid;
+    border-radius: 12px;
+    width: 92px;
+  }
+
+  .productCard {
+  }
+}
