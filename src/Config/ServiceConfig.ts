@@ -6,5 +6,3 @@ export const pathURls: {[key in string]: pathURLStrings} = {
   getItems: "items",
   getCompanies: "companies",
 };
-
-export const itemsPerPage = 16;

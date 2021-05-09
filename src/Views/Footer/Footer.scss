@@ -1,0 +1,11 @@
+@import "index.scss";
+
+#footer {
+  text-align: center;
+  padding-top: 135px;
+  padding-bottom: 40px;
+
+  p {
+    color: $primary-color;
+  }
+}

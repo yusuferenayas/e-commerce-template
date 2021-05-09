@@ -3,12 +3,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {storeItems, storeMaxPageCount} from "Stores/App";
 import ReactPaginate from "react-paginate";
 import "./Content.scss";
-import {setCurrentPage} from "Stores/Product";
+import {setCurrentPage, storeCurrentPage} from "Stores/Product";
 import {Grid} from "@material-ui/core";
 
 const Content = () => {
   const dispatch = useDispatch();
   const items = useSelector(storeItems);
+  const currentPage = useSelector(storeCurrentPage);
   const pageCount = useSelector(storeMaxPageCount);
 
   return (
@@ -24,16 +25,17 @@ const Content = () => {
               </Grid>
             ))}
         </Grid>
-        <ReactPaginate
-          pageCount={pageCount}
-          pageRangeDisplayed={3}
-          marginPagesDisplayed={2}
-          containerClassName="content__products-pagination"
-          previousLabel="&larr; Prev"
-          nextLabel="Next &rarr;"
-          onPageChange={({selected}) => dispatch(setCurrentPage(selected + 1))}
-        />
       </div>
+      <ReactPaginate
+        pageCount={pageCount}
+        pageRangeDisplayed={3}
+        marginPagesDisplayed={2}
+        containerClassName="content__products-pagination"
+        previousLabel="&larr; Prev"
+        nextLabel="Next &rarr;"
+        onPageChange={({selected}) => dispatch(setCurrentPage(selected + 1))}
+        forcePage={currentPage - 1}
+      />
     </div>
   );
 };

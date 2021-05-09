@@ -6,6 +6,7 @@ import reduxStore from "Stores";
 import {appIsLoading} from "Stores/App";
 import {CircularProgress, MuiThemeProvider} from "@material-ui/core";
 import {theme} from "Theme/MaterialUITheme";
+import {Footer} from "Views/Footer";
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const AppContent = () => {
         <Content />
         <div style={{width: "25%"}}></div>
       </Container>
+      <Footer />
     </div>
   );
 };

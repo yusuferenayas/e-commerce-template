@@ -21,6 +21,7 @@
 
         a {
           cursor: pointer;
+          font-weight: 600;
 
           &:hover {
             color: $primary-color;
@@ -30,6 +31,14 @@
         .selected {
           color: white;
           background-color: $primary-color;
+        }
+
+        .previous {
+          padding-right: 10%;
+        }
+
+        .next {
+          padding-left: 10%;
         }
       }
     }

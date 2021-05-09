@@ -1,13 +1,18 @@
-import {FC, useState} from "react";
+import {FC} from "react";
 import classnames from "classnames";
 import "./Categorize.scss";
-
-const categories: string[] = ["mug", "shirt"];
+import {categories} from "Config";
+import {useDispatch, useSelector} from "react-redux";
+import {setCategory, storeCategory} from "../../Stores/Product/slices";
 
 const Categorize = () => {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const dispatch = useDispatch();
+  const category = useSelector(storeCategory);
+  const activeIndex = categories.findIndex((item) => item === category);
 
-  const handleItemClick = (index: number) => setActiveIndex(index);
+  const handleItemClick = (index: number) => {
+    dispatch(setCategory(categories[index]));
+  };
 
   return (
     <div id="categorize">

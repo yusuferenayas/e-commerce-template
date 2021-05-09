@@ -6,7 +6,7 @@ export type GetItemsReponse = {data: ItemModel[]; maxPageCount: number};
 
 const getItems = async (
   page: number,
-  type: "mug" | "shirt"
+  type: string
 ): Promise<GetItemsReponse> => {
   const {
     data,
