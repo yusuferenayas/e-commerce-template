@@ -1,7 +1,6 @@
 @import "index.scss";
 
 #productCard {
-  width: 24%;
   min-height: 300px;
 
   img {
@@ -10,7 +9,7 @@
     padding: 16px;
     border: 1px $product-border-color solid;
     border-radius: 12px;
-    width: 92px;
+    width: calc(100% - 32px);
   }
 
   p {

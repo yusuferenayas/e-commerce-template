@@ -7,6 +7,7 @@ export const initialState: AppState = {
   isLoading: true,
   companies: undefined,
   items: undefined,
+  maxPageCount: 0,
 };
 
 const appSlice = createSlice({
@@ -23,13 +24,24 @@ const appSlice = createSlice({
     setItems: (state: AppState, action: PayloadAction<ItemModel[]>) => {
       state.items = action.payload;
     },
+    setMaxPage: (state: AppState, action: PayloadAction<number>) => {
+      state.maxPageCount = action.payload;
+    },
   },
 });
 
 export const appIsLoading = (state: RootState) => state.app.isLoading;
-export const storeItems = (state: RootState) => state.app.items;
 export const storeCompanies = (state: RootState) => state.app.companies;
+export const storeItems = (state: RootState) => state.app.items;
+export const storeMaxPageCount = (state: RootState) => state.app.maxPageCount;
 
-export const {onAppInit, onAppReady, setCompanies, setItems} = appSlice.actions;
+export const {
+  onAppInit,
+  onAppReady,
+  setCompanies,
+
+  setItems,
+  setMaxPage,
+} = appSlice.actions;
 
 export default appSlice.reducer;

@@ -4,13 +4,15 @@ import {Content} from "Views/Content";
 import {Header} from "Views/Header";
 import reduxStore from "Stores";
 import {appIsLoading} from "Stores/App";
-import ReactLoading from "react-loading";
-import {colors} from "Theme/Variables";
+import {CircularProgress, MuiThemeProvider} from "@material-ui/core";
+import {theme} from "Theme/MaterialUITheme";
 
 const App = () => {
   return (
     <Provider store={reduxStore}>
-      <AppContent />
+      <MuiThemeProvider theme={theme}>
+        <AppContent />
+      </MuiThemeProvider>
     </Provider>
   );
 };
@@ -21,7 +23,7 @@ const AppContent = () => {
   if (isLoading) {
     return (
       <div className="loadingContainer">
-        <ReactLoading type={"spinningBubbles"} color={colors.primary} />
+        <CircularProgress />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import {all, fork, put} from "redux-saga/effects";
 import {onAppInit, onAppReady} from "./App";
 import appSaga from "./App/sagas";
+import productSaga from "./Product/sagas";
 
 export function* initialSaga() {
   yield put(onAppInit());
@@ -12,7 +13,7 @@ export function* initialSaga() {
 function* rootSaga() {
   yield fork(initialSaga);
   // Add Sagas Here
-  yield all([appSaga].map(fork));
+  yield all([appSaga, productSaga].map(fork));
 }
 
 export default rootSaga;
