@@ -1,13 +1,17 @@
 import {itemsPerPage, pathURls} from "Config";
 import {axiosHelper} from "Services/AxiosHelper";
 import {ItemModel} from "Models";
+import {sortParamsParse} from "Utils/sortComposer";
 
 export type GetItemsReponse = {data: ItemModel[]; maxPageCount: number};
 
 const getItems = async (
   page: number,
-  type: string
+  type: string,
+  sort: string
 ): Promise<GetItemsReponse> => {
+  const {_order, _sort} = sortParamsParse(sort);
+
   const {
     data,
     headers: {link},
@@ -18,6 +22,8 @@ const getItems = async (
       _page: page,
       _limit: itemsPerPage,
       itemType: type,
+      _order,
+      _sort,
     },
   });
 

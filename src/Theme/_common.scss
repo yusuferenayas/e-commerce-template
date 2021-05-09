@@ -25,6 +25,15 @@ body {
     font-size: $font-large;
     color: $title-color;
     font-weight: 400;
+    margin-top: 0;
+  }
+
+  h5 {
+    font-size: $font-small;
+    color: $title-color;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 12px;
   }
 
   p {
