@@ -1,2 +1,2 @@
-export type {default as GetItemsModel} from "./GetItems";
-export type {default as GetCompaniesModel} from "./GetCompanies";
+export type {default as ItemModel} from "./Item";
+export type {default as CompanyModel} from "./Company";

@@ -3,8 +3,6 @@ import {configureStore, getDefaultMiddleware} from "@reduxjs/toolkit";
 import rootReducer from "./reducers";
 import rootSaga from "./sagas";
 
-import {AppState} from "./App";
-
 const sagaMiddleware = createSagaMiddleware();
 // serializableCheck and immutableCheck should be set to true after their issue has been solved
 const middleware = [
@@ -23,8 +21,6 @@ const store = configureStore({
 
 sagaMiddleware.run(rootSaga);
 
-export interface RootState {
-  app: AppState;
-}
+export type RootState = ReturnType<typeof rootReducer>;
 
 export default store;

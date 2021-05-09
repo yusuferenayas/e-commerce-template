@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: "Open Sans";
-  background: #E5E5E5;
+  background: #e5e5e5;
 
   *:focus,
   *:active {
@@ -18,6 +18,7 @@ body {
   ul {
     margin-left: 0;
     padding-left: 0;
+    list-style-type: none;
   }
 
   h4 {
@@ -30,5 +31,13 @@ body {
     font-size: $font-regular;
     color: $gray-scale-color;
     margin-top: 8px;
+  }
+
+  .loadingContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
   }
 }

@@ -1,4 +1,4 @@
-type GetItemsModel = {
+type ItemModel = {
   tags: string[];
   price: number;
   name: string;
@@ -9,4 +9,4 @@ type GetItemsModel = {
   itemType: string;
 };
 
-export default GetItemsModel;
+export default ItemModel;

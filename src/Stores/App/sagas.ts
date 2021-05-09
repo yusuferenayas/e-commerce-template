@@ -1,21 +1,26 @@
-import {PayloadAction} from "@reduxjs/toolkit";
+import {CompanyModel, ItemModel} from "Models";
 import {call, put, takeLatest} from "redux-saga/effects";
-// import {onInıtDataRequest} from "./slices";
+import getCompanies from "Services/Queries/GetCompanies";
+import getItems from "Services/Queries/GetItems";
+import {onAppInit, setCompanies, setItems} from "./slices";
 
 // Workers
 
-function* handleOnInıtRequestSaga({payload}: PayloadAction<string>) {
-  // try {
-  //   const onLoginResult: OnInıtModel = yield call(() => onInıtData(payload));
-  //   yield put(onInıtDataRequestSuccess(onLoginResult));
-  // } catch (error) {
-  //   yield put(onInıtDataRequestError(error));
-  // }
+function* handleOnAppInit() {
+  try {
+    const itemsResult: ItemModel[] = yield call(() => getItems(0, "mug"));
+    const companiesResult: CompanyModel[] = yield call(() => getCompanies());
+
+    yield put(setItems(itemsResult));
+    yield put(setCompanies(companiesResult));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 // Watchers
 function* appSagasWatcher() {
-  // yield takeLatest(onInıtDataRequest, handleOnInıtRequestSaga);
+  yield takeLatest(onAppInit, handleOnAppInit);
 }
 
 // eslint-disable-next-line

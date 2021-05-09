@@ -1,4 +1,4 @@
-type GetCompaniesModel = {
+type CompanyModel = {
   slug: string;
   name: string;
   address: string;
@@ -9,4 +9,4 @@ type GetCompaniesModel = {
   contact: string;
 };
 
-export default GetCompaniesModel;
+export default CompanyModel;

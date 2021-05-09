@@ -1,4 +1,7 @@
+import {ItemModel, CompanyModel} from "Models";
+
 export interface AppState {
   isLoading: boolean;
-  data: object;
+  items: ItemModel[] | undefined;
+  companies: CompanyModel[] | undefined;
 }

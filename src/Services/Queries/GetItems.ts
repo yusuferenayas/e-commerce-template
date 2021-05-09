@@ -1,12 +1,20 @@
-import {pathURls} from "Config";
+import {itemsPerPage, pathURls} from "Config";
 import {axiosHelper} from "Services/AxiosHelper";
-import {GetItemsModel} from "Models";
+import {ItemModel} from "Models";
 
-const getItems = async (): Promise<GetItemsModel> =>
+const getItems = async (
+  page: number,
+  type: "mug" | "shirt"
+): Promise<ItemModel> =>
   (
     await axiosHelper({
       method: "get",
       url: pathURls.getItems,
+      params: {
+        _page: page,
+        _limit: itemsPerPage,
+        itemType: type,
+      },
     })
   ).data;
 

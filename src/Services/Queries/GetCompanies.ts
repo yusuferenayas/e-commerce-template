@@ -1,8 +1,8 @@
 import {pathURls} from "Config";
 import {axiosHelper} from "Services/AxiosHelper";
-import {GetCompaniesModel} from "Models";
+import {CompanyModel} from "Models";
 
-const getCompanies = async (): Promise<GetCompaniesModel> =>
+const getCompanies = async (): Promise<CompanyModel> =>
   (
     await axiosHelper({
       method: "get",

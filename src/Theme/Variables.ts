@@ -1,4 +1,4 @@
-import SASSVariables from "./scss/_variables.module.scss";
+import SASSVariables from "./_variables.module.scss";
 
 type ThemeVariablesType = {
   primaryColor: string;
@@ -6,6 +6,7 @@ type ThemeVariablesType = {
   titleColor: string;
   productBorderColor: string;
   grayScaleColor: string;
+  grayScaleLightColor: string;
 
   fontRegular: string;
   fontLarge: string;
@@ -19,6 +20,7 @@ export const colors = {
   title: variables.titleColor,
   productBorder: variables.productBorderColor,
   grayScale: variables.grayScaleColor,
+  grayScaleLight: variables.grayScaleLightColor,
 };
 
 export const fontSize = {

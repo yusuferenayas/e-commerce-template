@@ -1,13 +1,12 @@
-import {all, call, fork, put, take} from "redux-saga/effects";
-import {onAppInit} from "./App";
+import {all, fork, put} from "redux-saga/effects";
+import {onAppInit, onAppReady} from "./App";
 import appSaga from "./App/sagas";
 
 export function* initialSaga() {
-  // yield put(cmsRequest());
-  // yield take(cmsRequestSuccess);
+  yield put(onAppInit());
 
   // Indicate that the app is initialized
-  yield put(onAppInit());
+  yield put(onAppReady());
 }
 
 function* rootSaga() {

@@ -1,7 +1,8 @@
 @import "index.scss";
 
 #productCard {
-  width: 20%;
+  width: 24%;
+  min-height: 300px;
 
   img {
     margin-top: 16px;
@@ -12,6 +13,7 @@
     width: 92px;
   }
 
-  .productCard {
+  p {
+    min-height: 35px;
   }
 }
