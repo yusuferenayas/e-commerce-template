@@ -2,8 +2,9 @@ import {CompanyModel} from "Models";
 import {call, put, select, takeLatest} from "redux-saga/effects";
 import getCompanies from "Services/Queries/GetCompanies";
 import getItems, {GetItemsReponse} from "Services/Queries/GetItems";
+import getTags from "Services/Queries/GetTags";
 import {storeCurrentPage, storeCategory, storeSort} from "Stores/Product";
-import {onAppInit, setCompanies, setItems, setMaxPage} from "./slices";
+import {onAppInit, setCompanies, setItems, setMaxPage, setTags} from "./slices";
 
 // Workers
 
@@ -17,10 +18,12 @@ function* handleOnAppInit() {
       getItems(currentPage, category, sort)
     );
     const companiesResult: CompanyModel[] = yield call(() => getCompanies());
+    const tagsResult: CompanyModel[] = yield call(() => getTags());
 
     yield put(setItems(itemsResult.data));
     yield put(setMaxPage(itemsResult.maxPageCount));
     yield put(setCompanies(companiesResult));
+    yield put(setTags(tagsResult));
   } catch (error) {
     console.log(error);
   }

@@ -9,15 +9,17 @@ type CompanyCheckboxType =
       label: string;
       slug: string;
       value: boolean;
+      itemCount: number;
     }[]
   | undefined;
 
 const Filter = () => {
   const companies = useSelector(storeCompanies);
-  const companiesDefaultState = companies?.map(({name, slug}) => ({
+  const companiesDefaultState = companies?.map(({name, slug, itemCount}) => ({
     label: name,
     slug,
     value: false,
+    itemCount,
   }));
   const [companiesState, setCompaniesState] = useState<CompanyCheckboxType>(
     undefined
@@ -45,7 +47,7 @@ const Filter = () => {
       <h5>Brands</h5>
       <div className="filter__checkboxContainer">
         <div className="filter__checkboxContainer-inner">
-          {companiesState?.map(({label, slug, value}, index) => (
+          {companiesState?.map(({label, slug, value, itemCount}, index) => (
             <FormControlLabel
               key={index}
               control={
@@ -56,7 +58,7 @@ const Filter = () => {
                   name={slug}
                 />
               }
-              label={label}
+              label={`${label} (${itemCount})`}
             />
           ))}
         </div>

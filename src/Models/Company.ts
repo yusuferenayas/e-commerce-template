@@ -7,6 +7,7 @@ type CompanyModel = {
   zip: string;
   account: number;
   contact: string;
+  itemCount: number;
 };
 
 export default CompanyModel;
