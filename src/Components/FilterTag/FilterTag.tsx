@@ -1,8 +1,8 @@
 import "./FilterTag.scss";
-import {useEffect, useState} from "react";
-import {FormControlLabel, Checkbox} from "@material-ui/core";
+import React, {useEffect, useState} from "react";
+import {FormControlLabel, Checkbox, TextField} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
-import {setTags, storeTags} from "Stores/App";
+import {storeTags} from "Stores/App";
 import {
   resetSelectedTags,
   setSelectedTags,
@@ -30,6 +30,7 @@ const FilterTag = () => {
     itemCount,
   }));
 
+  const [search, setSearch] = useState<string>("");
   const [tagsState, setTagsState] = useState<TagCheckboxType>(undefined);
   const [checkboxAll, setCheckboxAll] = useState<boolean>(true);
 
@@ -69,33 +70,46 @@ const FilterTag = () => {
       <h5>Tags</h5>
       <div className="filterTag__checkboxContainer">
         <div className="filterTag__checkboxContainer-inner">
-          <FormControlLabel
-            control={
-              <Checkbox
-                color="primary"
-                checked={checkboxAll}
-                onChange={(event) =>
-                  isAnySelectedTags ? handleAllCheckboxChange(event) : null
-                }
-                name={"AllTags"}
-              />
-            }
-            label={`All (${totalCount})`}
+          <TextField
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            label="Search"
+            variant="outlined"
+            fullWidth
           />
-          {tagsState?.map(({name, value, itemCount}, index) => (
+          {!search && (
             <FormControlLabel
-              key={index}
               control={
                 <Checkbox
                   color="primary"
-                  checked={value}
-                  onChange={handleChange}
-                  name={name}
+                  checked={checkboxAll}
+                  onChange={(event) =>
+                    isAnySelectedTags ? handleAllCheckboxChange(event) : null
+                  }
+                  name={"AllTags"}
                 />
               }
-              label={`${name} (${itemCount})`}
+              label={`All (${totalCount})`}
             />
-          ))}
+          )}
+          {tagsState
+            ?.filter(({name}) =>
+              search ? name.toLowerCase().includes(search.toLowerCase()) : name
+            )
+            .map(({name, value, itemCount}, index) => (
+              <FormControlLabel
+                key={index}
+                control={
+                  <Checkbox
+                    color="primary"
+                    checked={value}
+                    onChange={handleChange}
+                    name={name}
+                  />
+                }
+                label={`${name} (${itemCount})`}
+              />
+            ))}
         </div>
       </div>
     </div>

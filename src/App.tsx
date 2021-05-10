@@ -8,6 +8,7 @@ import {CircularProgress, MuiThemeProvider} from "@material-ui/core";
 import {theme} from "Theme/MaterialUITheme";
 import {Footer} from "Views/Footer";
 import {Sidebar} from "Views/Sidebar";
+import {MyCart} from "Views/MyCart";
 
 const App = () => {
   return (
@@ -36,7 +37,7 @@ const AppContent = () => {
       <Container>
         <Sidebar />
         <Content />
-        <div style={{width: "25%"}}></div>
+        <MyCart />
       </Container>
       <Footer />
     </div>

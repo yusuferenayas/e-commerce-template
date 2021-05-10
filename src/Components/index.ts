@@ -5,3 +5,4 @@ export {PriceText} from "./PriceText";
 export {Categorize} from "./Categorize";
 export {Sorting} from "./Sorting";
 export {FilterBrand} from "./FilterBrand";
+export {FilterTag} from "./FilterTag";

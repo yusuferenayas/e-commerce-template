@@ -2,6 +2,7 @@ import SASSVariables from "./_variables.module.scss";
 
 type ThemeVariablesType = {
   primaryColor: string;
+  alternativeColor: string;
   secondaryColor: string;
   titleColor: string;
   productBorderColor: string;
@@ -17,6 +18,7 @@ const variables = SASSVariables as ThemeVariablesType;
 
 export const colors = {
   primary: variables.primaryColor,
+  alternativeColor: variables.alternativeColor,
   secondary: variables.secondaryColor,
   title: variables.titleColor,
   productBorder: variables.productBorderColor,

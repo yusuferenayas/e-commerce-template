@@ -1,7 +1,6 @@
 import {Box} from "@material-ui/core";
 import {Sorting} from "Components";
-import {FilterBrand} from "Components";
-import {FilterTag} from "Components/FilterTag";
+import {FilterBrand, FilterTag} from "Components";
 
 const Sidebar = () => {
   return (
