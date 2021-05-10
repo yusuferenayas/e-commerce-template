@@ -1,14 +1,16 @@
 import {itemsPerPage, pathURls} from "Config";
 import {axiosHelper} from "Services/AxiosHelper";
 import {ItemModel} from "Models";
-import {sortParamsParse} from "Utils/sortComposer";
+import {sortParamsParse} from "Utils/sortParamsParse";
+import qs from "qs";
 
 export type GetItemsReponse = {data: ItemModel[]; maxPageCount: number};
 
 const getItems = async (
   page: number,
   type: string,
-  sort: string
+  sort: string,
+  brands?: string[]
 ): Promise<GetItemsReponse> => {
   const {_order, _sort} = sortParamsParse(sort);
 
@@ -24,6 +26,10 @@ const getItems = async (
       itemType: type,
       _order,
       _sort,
+      ...(brands && brands.length > 0 && {manufacturer: brands}),
+    },
+    paramsSerializer: (params) => {
+      return qs.stringify(params);
     },
   });
 
