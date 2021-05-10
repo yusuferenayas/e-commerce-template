@@ -1,0 +1,19 @@
+@import "index.scss";
+
+#filter {
+  .filter__checkboxContainer {
+    background-color: white;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+    &-inner {
+      height: 250px;
+      overflow: auto;
+    }
+
+    label {
+      width: 100%;
+    }
+  }
+}
