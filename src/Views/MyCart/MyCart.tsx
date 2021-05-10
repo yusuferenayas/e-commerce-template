@@ -4,33 +4,56 @@ import {PriceText} from "Components/PriceText";
 import CounterInput from "react-counter-input";
 import {Box} from "@material-ui/core";
 import {colors} from "Theme/Variables";
-import {CSSProperties} from "react";
+import {CSSProperties, FC} from "react";
+import {setCartItem, CartItemType, storeCartItems} from "Stores/Cart";
+import {useDispatch, useSelector} from "react-redux";
+import useTotalPrice from "Hooks/useTotalPrice";
 
 const MyCart = () => {
+  const totalPrice = useTotalPrice();
+  const cartItems = useSelector(storeCartItems);
+
   return (
     <Box width="25%" paddingLeft={2}>
       <div id="myCart">
-        <CartItem />
-        <div className="myCart__priceContainer">
-          <PriceText price="39,97" />
-        </div>
+        {cartItems.length > 0 ? (
+          <>
+            {cartItems.map((item, index) => (
+              <CartItem key={index} {...item} />
+            ))}
+            <div className="myCart__totalPrice">
+              <PriceText price={totalPrice} />
+            </div>
+          </>
+        ) : (
+          <p>Empty Cart</p>
+        )}
       </div>
     </Box>
   );
 };
 
-const CartItem = () => {
+type CartItemProps = CartItemType;
+
+const CartItem: FC<CartItemProps> = (item) => {
+  const dispatch = useDispatch();
+  const {name, price, count} = item;
+
+  const onCountChange = (changedCount: number) => {
+    dispatch(setCartItem({...item, count: changedCount}));
+  };
+
   return (
     <div id="cartItem">
       <div>
-        <p>Example Product</p>
-        <PriceText price="14,99" />
+        <p>{name}</p>
+        <PriceText price={price.toString()} />
       </div>
       <CounterInput
         min={0}
-        max={10}
-        count={1}
-        onCountChange={(count: number) => console.log(count)}
+        max={100}
+        count={count}
+        onCountChange={onCountChange}
         btnStyle={btnStyle}
         inputStyle={inputStyle}
       />

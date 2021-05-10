@@ -19,9 +19,9 @@ const Content = () => {
       <div className="content__products">
         <Grid container spacing={2}>
           {items &&
-            items.map(({name, price}, index) => (
+            items.map((item, index) => (
               <Grid item xs={12} sm={6} md={3} lg={3} key={index}>
-                <ProductCard key={index} name={name} price={price} />
+                <ProductCard key={index} {...item} />
               </Grid>
             ))}
         </Grid>
