@@ -14,9 +14,20 @@ export const theme = createMuiTheme({
     },
   },
   overrides: {
+    MuiFormControlLabel: {
+      root: {
+        color: colors.grayScaleSemiLightColor,
+      },
+    },
     MuiRadio: {
       root: {
         padding: 5,
+      },
+    },
+    MuiTextField: {
+      root: {
+        marginTop: "5px",
+        marginBottom: "12px",
       },
     },
   },

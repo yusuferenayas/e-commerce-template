@@ -7,6 +7,7 @@ type ThemeVariablesType = {
   productBorderColor: string;
   grayScaleColor: string;
   grayScaleLightColor: string;
+  grayScaleSemiLightColor: string;
 
   fontRegular: string;
   fontLarge: string;
@@ -21,6 +22,7 @@ export const colors = {
   productBorder: variables.productBorderColor,
   grayScale: variables.grayScaleColor,
   grayScaleLight: variables.grayScaleLightColor,
+  grayScaleSemiLightColor: variables.grayScaleSemiLightColor,
 };
 
 export const fontSize = {

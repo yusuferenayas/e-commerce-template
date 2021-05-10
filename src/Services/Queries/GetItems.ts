@@ -10,7 +10,8 @@ const getItems = async (
   page: number,
   type: string,
   sort: string,
-  brands?: string[]
+  brands?: string[],
+  tags?: string[]
 ): Promise<GetItemsReponse> => {
   const {_order, _sort} = sortParamsParse(sort);
 
@@ -27,6 +28,7 @@ const getItems = async (
       _order,
       _sort,
       ...(brands && brands.length > 0 && {manufacturer: brands}),
+      ...(tags && tags.length > 0 && {tags_like: tags}),
     },
     paramsSerializer: (params) => {
       return qs.stringify(params);

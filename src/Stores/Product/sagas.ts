@@ -1,7 +1,15 @@
 import {call, put, select, takeLatest} from "redux-saga/effects";
 import getItems, {GetItemsReponse} from "Services/Queries/GetItems";
 import {setItems, setMaxPage} from "Stores/App";
-import {resetBrand, resetCurrentPage, setBrand, storeBrands} from ".";
+import {
+  resetCurrentPage,
+  storeSelectedBrands,
+  resetSelectedBrand,
+  setSelectedBrand,
+  setSelectedTags,
+  resetSelectedTags,
+  storeSelectedTags,
+} from ".";
 import {
   setCategory,
   setCurrentPage,
@@ -16,11 +24,12 @@ function* getCurrentItems() {
   const currentPage: number = yield select(storeCurrentPage);
   const category: string = yield select(storeCategory);
   const sort: string = yield select(storeSort);
-  const brands: string[] = yield select(storeBrands);
+  const selectedBrands: string[] = yield select(storeSelectedBrands);
+  const selectedTags: string[] = yield select(storeSelectedTags);
 
   try {
     const itemsResult: GetItemsReponse = yield call(() =>
-      getItems(currentPage, category, sort, brands)
+      getItems(currentPage, category, sort, selectedBrands, selectedTags)
     );
     yield put(setMaxPage(itemsResult.maxPageCount));
     yield put(setItems(itemsResult.data));
@@ -29,11 +38,7 @@ function* getCurrentItems() {
   }
 }
 
-function* onCategoryChange() {
-  yield put(resetCurrentPage());
-  yield getCurrentItems();
-}
-function* onBrandChange() {
+function* resetPageAndGetCurrentItems() {
   yield put(resetCurrentPage());
   yield getCurrentItems();
 }
@@ -41,10 +46,12 @@ function* onBrandChange() {
 // Watchers
 function* appSagasWatcher() {
   yield takeLatest(setCurrentPage, getCurrentItems);
-  yield takeLatest(setCategory, onCategoryChange);
   yield takeLatest(setSort, getCurrentItems);
-  yield takeLatest(setBrand, onBrandChange);
-  yield takeLatest(resetBrand, onBrandChange);
+  yield takeLatest(setCategory, resetPageAndGetCurrentItems);
+  yield takeLatest(setSelectedBrand, resetPageAndGetCurrentItems);
+  yield takeLatest(resetSelectedBrand, resetPageAndGetCurrentItems);
+  yield takeLatest(setSelectedTags, resetPageAndGetCurrentItems);
+  yield takeLatest(resetSelectedTags, resetPageAndGetCurrentItems);
 }
 
 export default appSagasWatcher;

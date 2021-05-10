@@ -1,9 +1,13 @@
 import "./FilterBrand.scss";
-import {useEffect, useState} from "react";
-import {FormControlLabel, Checkbox} from "@material-ui/core";
+import React, {useEffect, useState} from "react";
+import {FormControlLabel, Checkbox, TextField} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {storeCompanies} from "Stores/App";
-import {resetBrand, setBrand, storeBrands} from "Stores/Product";
+import {
+  resetSelectedBrand,
+  setSelectedBrand,
+  storeSelectedBrands,
+} from "Stores/Product";
 
 type CompanyCheckboxType =
   | {
@@ -16,9 +20,10 @@ type CompanyCheckboxType =
 
 const FilterBrand = () => {
   const dispatch = useDispatch();
-  const selectedBrands = useSelector(storeBrands);
+  const selectedBrands = useSelector(storeSelectedBrands);
   const isAnySelectedBrands = selectedBrands.length > 0;
   const brands = useSelector(storeCompanies);
+  const totalCount = brands?.reduce((a, b) => a + (b["itemCount"] || 0), 0);
 
   const brandsDefaultState = brands?.map(({name, slug, itemCount}) => ({
     label: name,
@@ -27,6 +32,7 @@ const FilterBrand = () => {
     itemCount,
   }));
 
+  const [search, setSearch] = useState<string>("");
   const [brandsState, setBrandsState] = useState<CompanyCheckboxType>(
     undefined
   );
@@ -51,7 +57,7 @@ const FilterBrand = () => {
       companiesEdited[foundIndex].value = event.target.checked;
 
       setBrandsState(companiesEdited);
-      dispatch(setBrand(event.target.name));
+      dispatch(setSelectedBrand(event.target.name));
     }
   };
 
@@ -60,7 +66,7 @@ const FilterBrand = () => {
   ) => {
     setCheckboxAll(event.target.checked);
     setBrandsState(brandsDefaultState);
-    dispatch(resetBrand());
+    dispatch(resetSelectedBrand());
   };
 
   return (
@@ -68,33 +74,48 @@ const FilterBrand = () => {
       <h5>Brands</h5>
       <div className="filterBrand__checkboxContainer">
         <div className="filterBrand__checkboxContainer-inner">
-          <FormControlLabel
-            control={
-              <Checkbox
-                color="primary"
-                checked={checkboxAll}
-                onChange={(event) =>
-                  isAnySelectedBrands ? handleAllCheckboxChange(event) : null
-                }
-                name={"AllBrand"}
-              />
-            }
-            label={"All"}
+          <TextField
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            label="Search"
+            variant="outlined"
+            fullWidth
           />
-          {brandsState?.map(({label, slug, value, itemCount}, index) => (
+          {!search && (
             <FormControlLabel
-              key={index}
               control={
                 <Checkbox
                   color="primary"
-                  checked={value}
-                  onChange={handleChange}
-                  name={slug}
+                  checked={checkboxAll}
+                  onChange={(event) =>
+                    isAnySelectedBrands ? handleAllCheckboxChange(event) : null
+                  }
+                  name={"AllBrand"}
                 />
               }
-              label={`${label} (${itemCount})`}
+              label={`All (${totalCount})`}
             />
-          ))}
+          )}
+          {brandsState
+            ?.filter(({label}) =>
+              search
+                ? label.toLowerCase().includes(search.toLowerCase())
+                : label
+            )
+            .map(({label, slug, value, itemCount}, index) => (
+              <FormControlLabel
+                key={index}
+                control={
+                  <Checkbox
+                    color="primary"
+                    checked={value}
+                    onChange={handleChange}
+                    name={slug}
+                  />
+                }
+                label={`${label} (${itemCount})`}
+              />
+            ))}
         </div>
       </div>
     </div>
