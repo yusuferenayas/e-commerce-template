@@ -33,7 +33,8 @@ const getItems = async (
     },
   });
 
-  const maxPageCount = link.split("page=")[3].split("&")[0];
+  const pageLinks = link.split("page=");
+  const maxPageCount = pageLinks[pageLinks.length - 1].split("&")[0];
 
   return {data, maxPageCount};
 };

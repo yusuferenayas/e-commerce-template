@@ -17,6 +17,9 @@ const productSlice = createSlice({
     setCurrentPage: (state: ProductState, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
     },
+    resetCurrentPage: (state: ProductState) => {
+      state.currentPage = 1;
+    },
     setCategory: (state: ProductState, action: PayloadAction<string>) => {
       state.category = action.payload;
       state.currentPage = 1;
@@ -48,6 +51,7 @@ export const storeBrands = (state: RootState) => state.product.brands;
 
 export const {
   setCurrentPage,
+  resetCurrentPage,
   setCategory,
   setSort,
   setBrand,

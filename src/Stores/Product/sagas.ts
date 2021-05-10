@@ -1,7 +1,7 @@
 import {call, put, select, takeLatest} from "redux-saga/effects";
 import getItems, {GetItemsReponse} from "Services/Queries/GetItems";
 import {setItems, setMaxPage} from "Stores/App";
-import {resetBrand, setBrand, storeBrands} from ".";
+import {resetBrand, resetCurrentPage, setBrand, storeBrands} from ".";
 import {
   setCategory,
   setCurrentPage,
@@ -29,13 +29,22 @@ function* getCurrentItems() {
   }
 }
 
+function* onCategoryChange() {
+  yield put(resetCurrentPage());
+  yield getCurrentItems();
+}
+function* onBrandChange() {
+  yield put(resetCurrentPage());
+  yield getCurrentItems();
+}
+
 // Watchers
 function* appSagasWatcher() {
   yield takeLatest(setCurrentPage, getCurrentItems);
-  yield takeLatest(setCategory, getCurrentItems);
+  yield takeLatest(setCategory, onCategoryChange);
   yield takeLatest(setSort, getCurrentItems);
-  yield takeLatest(setBrand, getCurrentItems);
-  yield takeLatest(resetBrand, getCurrentItems);
+  yield takeLatest(setBrand, onBrandChange);
+  yield takeLatest(resetBrand, onBrandChange);
 }
 
 export default appSagasWatcher;
