@@ -13,7 +13,7 @@ export const useTotalPrice = () => {
     setTotalPrice(rawPrice);
   }, [cartItems]);
 
-  return totalPrice.toString();
+  return Number(totalPrice).toFixed(2).toString();
 };
 
 export default useTotalPrice;
