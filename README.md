@@ -151,3 +151,15 @@ Utilities helper functions and methods can be defined in this folder.
 ### Views
 
 Wraper for shared components. It containts part of pages.
+
+
+### Test
+
+Can be run tests with:
+
+```
+npm test
+yarn test
+```
+
+Right now, there is issue with MaterialUI and test runs. Will be fixed later.
