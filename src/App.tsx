@@ -4,7 +4,7 @@ import {Content} from "Views/Content";
 import {Header} from "Views/Header";
 import reduxStore from "Stores";
 import {appIsLoading} from "Stores/App";
-import {CircularProgress, MuiThemeProvider} from "@material-ui/core";
+import {CircularProgress, Grid, MuiThemeProvider} from "@material-ui/core";
 import {theme} from "Theme/MaterialUITheme";
 import {Footer} from "Views/Footer";
 import {Sidebar} from "Views/Sidebar";
@@ -35,9 +35,17 @@ const AppContent = () => {
     <div>
       <Header />
       <Container>
-        <Sidebar />
-        <Content />
-        <MyCart />
+        <Grid container spacing={3}>
+          <Grid xs={12} md={3} item>
+            <Sidebar />
+          </Grid>
+          <Grid xs={12} md={6} item>
+            <Content />
+          </Grid>
+          <Grid xs={12} md={3} item>
+            <MyCart />
+          </Grid>
+        </Grid>
       </Container>
       <Footer />
     </div>

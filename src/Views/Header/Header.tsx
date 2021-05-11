@@ -13,7 +13,7 @@ const Header = () => {
       <Container>
         <Box display="flex" justifyContent="space-between" width="100%">
           <div className="header__first"></div>
-          <img src={Logo} alt="market logo" />
+          <img src={Logo} alt="market logo" className={"header__logo"} />
           <div className="header__cart">
             <img src={BasketIcon} alt="Cart" />
             <PriceText price={totalPrice} color="white" />

@@ -4,4 +4,8 @@
   max-width: 1200px;
   margin: auto;
   display: flex;
+
+  @include regular-device {
+    width: calc(100% - 25px);
+  }
 }

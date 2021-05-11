@@ -2,7 +2,6 @@ import "./MyCart.scss";
 import {PriceText} from "Components/PriceText";
 // @ts-ignore
 import CounterInput from "react-counter-input";
-import {Box} from "@material-ui/core";
 import {colors} from "Theme/Variables";
 import {CSSProperties, FC} from "react";
 import {setCartItem, CartItemType, storeCartItems} from "Stores/Cart";
@@ -14,22 +13,20 @@ const MyCart = () => {
   const cartItems = useSelector(storeCartItems);
 
   return (
-    <Box width="25%" paddingLeft={2}>
-      <div id="myCart">
-        {cartItems.length > 0 ? (
-          <>
-            {cartItems.map((item, index) => (
-              <CartItem key={index} {...item} />
-            ))}
-            <div className="myCart__totalPrice">
-              <PriceText price={totalPrice} />
-            </div>
-          </>
-        ) : (
-          <p>Empty Cart</p>
-        )}
-      </div>
-    </Box>
+    <div id="myCart">
+      {cartItems.length > 0 ? (
+        <>
+          {cartItems.map((item, index) => (
+            <CartItem key={index} {...item} />
+          ))}
+          <div className="myCart__totalPrice">
+            <PriceText price={totalPrice} />
+          </div>
+        </>
+      ) : (
+        <p>Empty Cart</p>
+      )}
+    </div>
   );
 };
 

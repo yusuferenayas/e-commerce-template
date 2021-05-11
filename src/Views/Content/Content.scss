@@ -1,8 +1,6 @@
 @import "index.scss";
 
 #content {
-  width: 50%;
-
   .content {
     &__products {
       background-color: white;
@@ -12,6 +10,11 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
+
+        @include tiny-device {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
 
         li {
           padding: 11px 12px;
